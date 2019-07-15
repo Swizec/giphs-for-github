@@ -19,7 +19,10 @@ const Giphys = ({ target }) => {
         const giph = results.data.filter(d => d.type === "gif")[0];
         target.value += `![${giph.slug}](${giph.images.downsized_medium.url})`;
 
-        target.dispatchEvent(new Event("change"));
+        // Make this damn textarea works!
+        let evt = document.createEvent("Events");
+        evt.initEvent("change", true, true);
+        target.dispatchEvent(evt);
 
         setSearch("");
     }
